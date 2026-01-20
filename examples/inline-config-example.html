@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Inline Config Example - No External Files</title>
+</head>
+<body>
+    <h1>Inline Configuration Example</h1>
+    <p>This shows how to embed all configuration directly in HTML - zero external dependencies!</p>
+
+    <!--
+        INLINE CONFIGURATION - NO EXTERNAL FILES NEEDED
+
+        Embed your entire configuration in a script tag.
+        This eliminates the need to fetch templates.json
+    -->
+    <script type="application/json" id="config-data">
+    {
+      "settings": {
+        "bccEmail": "tracking@yourcompany.com",
+        "trackingDomain": "track.yourcompany.com"
+      },
+      "templates": [
+        {
+          "id": "quick-intro",
+          "jobFunction": "Sales",
+          "name": "Quick Introduction",
+          "subject": "Quick intro - {{companyName}}",
+          "body": "<p>Hi {{firstName}},</p><p>Quick message from {{senderName}}.</p>",
+          "trackingCode": "QI-01"
+        },
+        {
+          "id": "thank-you",
+          "jobFunction": "Customer Support",
+          "name": "Thank You",
+          "subject": "Thank you, {{firstName}}!",
+          "body": "<p>Hi {{firstName}},</p><p>Thank you for your business!</p><p>Best,<br>{{senderName}}</p>",
+          "trackingCode": "TY-01"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Load configuration from inline script -->
+    <script>
+        // This is how you load the inline configuration
+        function loadInlineConfig() {
+            const configElement = document.getElementById('config-data');
+            if (configElement) {
+                const config = JSON.parse(configElement.textContent);
+                console.log('Configuration loaded:', config);
+                console.log('BCC Email:', config.settings.bccEmail);
+                console.log('Templates:', config.templates.length);
+                return config;
+            }
+            return null;
+        }
+
+        // Example usage
+        const config = loadInlineConfig();
+        if (config) {
+            document.body.innerHTML += `
+                <h2>Configuration Loaded Successfully!</h2>
+                <p><strong>BCC Email:</strong> ${config.settings.bccEmail}</p>
+                <p><strong>Tracking Domain:</strong> ${config.settings.trackingDomain}</p>
+                <p><strong>Templates:</strong> ${config.templates.length} templates loaded</p>
+                <h3>Available Templates:</h3>
+                <ul>
+                    ${config.templates.map(t =>
+                        `<li><strong>${t.name}</strong> (${t.jobFunction}) - Code: ${t.trackingCode}</li>`
+                    ).join('')}
+                </ul>
+            `;
+        }
+    </script>
+
+    <hr>
+    <h2>Benefits of Inline Configuration</h2>
+    <ul>
+        <li>✅ <strong>Zero external file dependencies</strong> - everything in one HTML file</li>
+        <li>✅ <strong>No fetch() required</strong> - no CORS issues</li>
+        <li>✅ <strong>Works offline</strong> - can be saved and used locally</li>
+        <li>✅ <strong>Faster load times</strong> - no additional HTTP requests</li>
+        <li>✅ <strong>Portable</strong> - single file contains everything</li>
+        <li>✅ <strong>Perfect for static hosting</strong> - deploy anywhere</li>
+    </ul>
+
+    <h2>How to Use in Your Add-in</h2>
+    <pre><code>// Modify loadConfiguration() in taskpane.js:
+
+async loadConfiguration() {
+    try {
+        // Try inline config first
+        const configElement = document.getElementById('config-data');
+        if (configElement) {
+            const config = JSON.parse(configElement.textContent);
+            this.templates = config.templates || [];
+            this.settings = config.settings || {};
+            return;
+        }
+
+        // Fallback to external file
+        const response = await fetch('../../config/templates.json');
+        const config = await response.json();
+        this.templates = config.templates;
+        this.settings = config.settings;
+    } catch (error) {
+        this.loadDefaultConfiguration();
+    }
+}</code></pre>
+
+    <h2>Deployment Options</h2>
+    <p>With inline config, you can deploy to:</p>
+    <ul>
+        <li><strong>Netlify</strong> - Drag & drop this file</li>
+        <li><strong>GitHub Pages</strong> - Push to repository</li>
+        <li><strong>Vercel</strong> - Deploy with one command</li>
+        <li><strong>Cloudflare Pages</strong> - Free unlimited hosting</li>
+        <li><strong>Azure Static Web Apps</strong> - Microsoft ecosystem</li>
+        <li><strong>AWS S3</strong> - Enterprise hosting</li>
+    </ul>
+
+    <p><strong>No backend server required!</strong> All processing happens client-side via Office.js API.</p>
+</body>
+</html>

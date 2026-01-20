@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Email Template Manager</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+
+    <!-- Template styles -->
+    <link rel="stylesheet" href="taskpane.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Email Template Manager</h1>
+            <p class="subtitle">Select and customize your email templates</p>
+        </header>
+
+        <main>
+            <!-- Job Function Filter -->
+            <section class="filter-section">
+                <label for="jobFunction">Filter by Job Function:</label>
+                <select id="jobFunction" class="input-field">
+                    <option value="">All Functions</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Customer Support">Customer Support</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Executive">Executive</option>
+                    <option value="Finance">Finance</option>
+                </select>
+            </section>
+
+            <!-- Template Selection -->
+            <section class="template-section">
+                <label for="templateSelect">Select Template:</label>
+                <select id="templateSelect" class="input-field">
+                    <option value="">-- Choose a template --</option>
+                </select>
+            </section>
+
+            <!-- Template Details -->
+            <section id="templateDetails" class="details-section" style="display: none;">
+                <div class="template-info">
+                    <h3 id="templateName"></h3>
+                    <p class="tracking-info">
+                        <strong>Tracking Code:</strong> <span id="trackingCode"></span>
+                    </p>
+                </div>
+
+                <!-- Dynamic Fields -->
+                <div id="dynamicFields" class="fields-container"></div>
+
+                <!-- Preview Section -->
+                <div class="preview-section">
+                    <h4>Preview</h4>
+                    <div class="preview-box">
+                        <div class="preview-subject">
+                            <strong>Subject:</strong> <span id="previewSubject"></span>
+                        </div>
+                        <div class="preview-body" id="previewBody"></div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button id="insertBtn" class="btn btn-primary">Insert Template</button>
+                    <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                </div>
+            </section>
+
+            <!-- Status Messages -->
+            <div id="statusMessage" class="status-message" style="display: none;"></div>
+        </main>
+
+        <footer>
+            <p class="footer-text">
+                <span class="status-indicator" id="bccStatus">
+                    BCC: <span id="bccEmail">Not configured</span>
+                </span>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Embed configuration inline (no server fetch needed) -->
+    <script type="application/json" id="config-data">
+    {
+      "settings": {
+        "bccEmail": "tracking@yourcompany.com",
+        "trackingDomain": "track.yourcompany.com"
+      },
+      "templates": []
+    }
+    </script>
+
+    <!-- Template Manager Script -->
+    <script type="text/javascript" src="taskpane.js"></script>
+</body>
+</html>
