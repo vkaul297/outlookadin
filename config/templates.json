@@ -1,0 +1,88 @@
+{
+  "settings": {
+    "bccEmail": "tracking@yourcompany.com",
+    "trackingDomain": "track.yourcompany.com"
+  },
+  "templates": [
+    {
+      "id": "sales-intro",
+      "jobFunction": "Sales",
+      "name": "Sales Introduction",
+      "subject": "Introduction - {{companyName}}",
+      "body": "<p>Hi {{firstName}},</p><p>I hope this email finds you well. My name is {{senderName}} and I'm reaching out from {{senderCompany}}.</p><p>I wanted to introduce our solutions that help companies like yours improve their {{painPoint}}. We've recently helped similar organizations achieve:</p><ul><li>{{benefit1}}</li><li>{{benefit2}}</li><li>{{benefit3}}</li></ul><p>Would you be available for a brief 15-minute call next week to discuss how we might be able to help {{companyName}}?</p><p>Best regards,<br>{{senderName}}<br>{{senderTitle}}</p>",
+      "trackingCode": "ST-INTRO"
+    },
+    {
+      "id": "sales-followup",
+      "jobFunction": "Sales",
+      "name": "Sales Follow-up",
+      "subject": "Following up - {{companyName}}",
+      "body": "<p>Hi {{firstName}},</p><p>I wanted to follow up on my previous email regarding {{topic}}.</p><p>I understand you're busy, but I believe we could provide significant value to {{companyName}} in the following areas:</p><ul><li>{{value1}}</li><li>{{value2}}</li></ul><p>Would you have 10 minutes this week to explore this further?</p><p>Best regards,<br>{{senderName}}</p>",
+      "trackingCode": "ST-FLLW"
+    },
+    {
+      "id": "support-welcome",
+      "jobFunction": "Customer Support",
+      "name": "Welcome New Customer",
+      "subject": "Welcome to {{companyName}}!",
+      "body": "<p>Dear {{firstName}},</p><p>Welcome to {{companyName}}! We're thrilled to have you on board.</p><p>I'm {{senderName}}, your dedicated support representative. I'm here to ensure you have a smooth onboarding experience.</p><p>Here are some resources to get you started:</p><ul><li>Getting Started Guide: {{guideLink}}</li><li>Video Tutorials: {{videoLink}}</li><li>Support Portal: {{supportLink}}</li></ul><p>If you have any questions or need assistance, please don't hesitate to reach out. I'm here to help!</p><p>Best regards,<br>{{senderName}}<br>Customer Support Team</p>",
+      "trackingCode": "CS-WLCM"
+    },
+    {
+      "id": "support-issue-resolution",
+      "jobFunction": "Customer Support",
+      "name": "Issue Resolution",
+      "subject": "Re: {{ticketNumber}} - Issue Resolved",
+      "body": "<p>Hi {{firstName}},</p><p>I'm pleased to inform you that we've resolved the issue you reported (Ticket #{{ticketNumber}}).</p><p><strong>Issue Summary:</strong><br>{{issueSummary}}</p><p><strong>Resolution:</strong><br>{{resolution}}</p><p>Please test the solution and let me know if everything is working as expected. If you encounter any further issues, feel free to reply to this email.</p><p>Thank you for your patience!</p><p>Best regards,<br>{{senderName}}<br>Support Team</p>",
+      "trackingCode": "CS-RSLV"
+    },
+    {
+      "id": "hr-interview-invite",
+      "jobFunction": "Human Resources",
+      "name": "Interview Invitation",
+      "subject": "Interview Invitation - {{position}}",
+      "body": "<p>Dear {{firstName}},</p><p>Thank you for your interest in the {{position}} role at {{companyName}}. We were impressed with your application and would like to invite you for an interview.</p><p><strong>Interview Details:</strong></p><ul><li>Date: {{interviewDate}}</li><li>Time: {{interviewTime}}</li><li>Duration: {{duration}}</li><li>Format: {{format}}</li><li>Location/Link: {{location}}</li></ul><p>Please confirm your availability by replying to this email. If this time doesn't work for you, please suggest alternative times.</p><p>We look forward to speaking with you!</p><p>Best regards,<br>{{senderName}}<br>{{companyName}} HR Team</p>",
+      "trackingCode": "HR-INVT"
+    },
+    {
+      "id": "hr-offer-letter",
+      "jobFunction": "Human Resources",
+      "name": "Job Offer",
+      "subject": "Job Offer - {{position}} at {{companyName}}",
+      "body": "<p>Dear {{firstName}},</p><p>We are delighted to extend an offer for the position of {{position}} at {{companyName}}.</p><p><strong>Offer Details:</strong></p><ul><li>Position: {{position}}</li><li>Start Date: {{startDate}}</li><li>Salary: {{salary}}</li><li>Benefits: {{benefits}}</li></ul><p>Please find the formal offer letter attached to this email. We would appreciate your response by {{responseDeadline}}.</p><p>If you have any questions about the offer, please don't hesitate to reach out.</p><p>We're excited about the possibility of you joining our team!</p><p>Best regards,<br>{{senderName}}<br>{{companyName}} HR Team</p>",
+      "trackingCode": "HR-OFFR"
+    },
+    {
+      "id": "marketing-product-launch",
+      "jobFunction": "Marketing",
+      "name": "Product Launch Announcement",
+      "subject": "Exciting News: Introducing {{productName}}!",
+      "body": "<p>Hi {{firstName}},</p><p>We're thrilled to announce the launch of {{productName}} - our latest innovation designed to {{productBenefit}}.</p><p><strong>Key Features:</strong></p><ul><li>{{feature1}}</li><li>{{feature2}}</li><li>{{feature3}}</li></ul><p><strong>Special Launch Offer:</strong><br>{{offer}}</p><p>Learn more and get started today: {{ctaLink}}</p><p>We can't wait for you to try it!</p><p>Best regards,<br>{{senderName}}<br>{{companyName}} Team</p>",
+      "trackingCode": "MK-LNCH"
+    },
+    {
+      "id": "marketing-newsletter",
+      "jobFunction": "Marketing",
+      "name": "Monthly Newsletter",
+      "subject": "{{companyName}} Newsletter - {{month}}",
+      "body": "<p>Hi {{firstName}},</p><p>Here's what's new at {{companyName}} this month:</p><p><strong>Featured Content:</strong></p><ul><li>{{article1}}</li><li>{{article2}}</li><li>{{article3}}</li></ul><p><strong>Upcoming Events:</strong><br>{{events}}</p><p><strong>Customer Spotlight:</strong><br>{{customerStory}}</p><p>Stay connected with us on social media for more updates!</p><p>Best regards,<br>The {{companyName}} Team</p>",
+      "trackingCode": "MK-NEWS"
+    },
+    {
+      "id": "executive-meeting-request",
+      "jobFunction": "Executive",
+      "name": "Meeting Request",
+      "subject": "Meeting Request - {{topic}}",
+      "body": "<p>Hi {{firstName}},</p><p>I would like to schedule a meeting to discuss {{topic}}.</p><p><strong>Proposed Agenda:</strong></p><ul><li>{{agendaItem1}}</li><li>{{agendaItem2}}</li><li>{{agendaItem3}}</li></ul><p>Would you be available for a {{duration}} meeting {{timeframe}}?</p><p>Please let me know your availability, and I'll send a calendar invitation.</p><p>Best regards,<br>{{senderName}}</p>",
+      "trackingCode": "EX-MEET"
+    },
+    {
+      "id": "finance-invoice",
+      "jobFunction": "Finance",
+      "name": "Invoice Notification",
+      "subject": "Invoice {{invoiceNumber}} - {{companyName}}",
+      "body": "<p>Dear {{firstName}},</p><p>Please find attached invoice {{invoiceNumber}} for services rendered.</p><p><strong>Invoice Details:</strong></p><ul><li>Invoice Number: {{invoiceNumber}}</li><li>Invoice Date: {{invoiceDate}}</li><li>Due Date: {{dueDate}}</li><li>Amount Due: {{amount}}</li></ul><p><strong>Payment Instructions:</strong><br>{{paymentInstructions}}</p><p>If you have any questions regarding this invoice, please contact us at {{contactEmail}}.</p><p>Thank you for your business!</p><p>Best regards,<br>{{senderName}}<br>{{companyName}} Finance Team</p>",
+      "trackingCode": "FN-INVC"
+    }
+  ]
+}
