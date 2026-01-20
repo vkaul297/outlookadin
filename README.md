@@ -2,6 +2,16 @@
 
 A powerful Outlook add-in that enables users to create templatized emails based on job functions. The add-in automatically adds BCC tracking emails and invisible unique tracking codes to monitor email conversations.
 
+## ⚡ No Backend Required!
+
+This add-in works with **pure static file hosting** - no server-side code, database, or API needed! Deploy to:
+- Netlify, Vercel, or Cloudflare Pages (free)
+- GitHub Pages (free)
+- Azure Static Web Apps (free)
+- Any HTTPS static hosting
+
+All logic runs client-side via Office.js. The included `server.js` is just for local development convenience. See [STATIC-HOSTING.md](STATIC-HOSTING.md) for deployment options.
+
 ## Features
 
 - **Template Management**: Create and manage email templates organized by job function (Sales, Support, HR, Marketing, etc.)
