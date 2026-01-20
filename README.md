@@ -174,9 +174,71 @@ async loadConfiguration() {
 }
 ```
 
+## 🏢 Enterprise Deployment (Azure)
+
+For enterprise deployments requiring Entra ID authentication, compliance, and enhanced security, we provide a complete Azure architecture.
+
+### Enterprise Features
+
+- **Entra ID (Azure AD) Authentication**: Single Sign-On with MFA
+- **Role-Based Access Control (RBAC)**: TemplateUser, TemplateAdmin roles
+- **Azure Front Door with WAF**: DDoS protection, geo-filtering, rate limiting
+- **Compliance**: SOC 2, ISO 27001, GDPR, HIPAA, FedRAMP ready
+- **Monitoring**: Azure Monitor, Log Analytics, Azure Sentinel integration
+- **Audit Logging**: Complete audit trail for all actions
+- **Conditional Access**: Device compliance, risk-based policies
+- **Data Encryption**: At rest and in transit with customer-managed keys
+- **Disaster Recovery**: Multi-region deployment with automated failover
+
+### Architecture
+
+```
+Microsoft 365 → Azure Front Door (WAF) → Azure Static Web Apps (Entra ID)
+                                            ↓
+                                     Azure Key Vault
+                                            ↓
+                              Azure Functions (Optional)
+                                            ↓
+                                   Azure Cosmos DB (Optional)
+                                            ↓
+                              Azure Monitor & Sentinel
+```
+
+### Quick Start - Enterprise Deployment
+
+```bash
+# 1. Create Azure resources
+az group create --name rg-outlook-addin-prod --location eastus
+az staticwebapp create --name swa-outlook-addin --resource-group rg-outlook-addin-prod
+
+# 2. Configure Entra ID
+# See AZURE-ENTERPRISE.md for detailed steps
+
+# 3. Deploy
+git push origin main  # Automatic deployment via GitHub Actions
+```
+
+### Cost Estimate
+
+- **Small Org** (< 100 users): ~$100-150/month
+- **Medium Org** (100-1000 users): ~$200-300/month
+- **Large Org** (1000+ users): ~$300-500/month
+
+Includes all Azure services, monitoring, and compliance features.
+
+### Documentation
+
+📘 **[AZURE-ENTERPRISE.md](AZURE-ENTERPRISE.md)** - Complete enterprise deployment guide with:
+- Architecture diagrams
+- Security configuration
+- Entra ID setup
+- Compliance & auditing
+- Disaster recovery
+- Cost optimization
+
 ## Requirements
 
-- **Node.js**: Version 14 or higher
+- **Node.js**: Version 14 or higher (development only)
 - **Outlook**:
   - Outlook on the Web (all browsers)
   - Outlook 2013 or later (Windows)
@@ -184,9 +246,18 @@ async loadConfiguration() {
   - Outlook Mobile (iOS/Android)
 - **Permissions**: ReadWriteMailbox
 
+### Enterprise Requirements
+
+- Azure subscription (Pay-as-you-go or Enterprise Agreement)
+- Entra ID (Azure AD) Premium P1 or P2
+- Custom domain with SSL
+- Security team approval
+
 ## Production Deployment
 
-For production deployment:
+### Standard Deployment (Static Hosting)
+
+For production deployment without authentication:
 
 1. **Host with HTTPS**: Office add-ins require secure hosting
 2. **Update Manifest URLs**: Replace `localhost:3000` with your production URL
@@ -194,11 +265,34 @@ For production deployment:
 4. **Update Configuration**: Set production BCC and tracking domain
 
 See [INSTALLATION.md](INSTALLATION.md) for detailed deployment instructions.
+See [STATIC-HOSTING.md](STATIC-HOSTING.md) for free hosting options.
+
+### Enterprise Deployment (Azure + Entra ID)
+
+For enterprise deployment with authentication and compliance:
+
+1. Follow the **[AZURE-ENTERPRISE.md](AZURE-ENTERPRISE.md)** guide
+2. Configure Entra ID authentication
+3. Set up RBAC and conditional access
+4. Enable monitoring and compliance features
+5. Configure disaster recovery
+
+Deployment time: 2-4 hours (including security configuration)
 
 ## Documentation
 
-- [INSTALLATION.md](INSTALLATION.md) - Complete installation and deployment guide
-- [CONFIGURATION.md](CONFIGURATION.md) - Configuration reference and examples
+### Getting Started
+- [README.md](README.md) - This file, overview and quick start
+- [QUICKSTART.md](QUICKSTART.md) - 5-minute setup guide
+- [INSTALLATION.md](INSTALLATION.md) - Complete installation guide
+
+### Configuration
+- [CONFIGURATION.md](CONFIGURATION.md) - Template configuration reference
+- [BACKEND-INTEGRATION.md](BACKEND-INTEGRATION.md) - Backend API integration
+
+### Deployment
+- [STATIC-HOSTING.md](STATIC-HOSTING.md) - Static hosting deployment (free options)
+- **[AZURE-ENTERPRISE.md](AZURE-ENTERPRISE.md)** - Enterprise Azure deployment with Entra ID
 
 ## Troubleshooting
 
